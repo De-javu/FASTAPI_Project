@@ -3,9 +3,14 @@ import hashlib
 import datetime
 from peewee import *
 
+from local_settings import USER_DATABASE
+from local_settings import PASSWORD_DATABASE
+
+
+
 database = MySQLDatabase('fastapi_project', 
-        user='root',
-        password='DATABASEPASSWORD',
+        user=USER_DATABASE,
+        password=PASSWORD_DATABASE,
         host='localhost',
         port=3306)
 
@@ -31,7 +36,7 @@ class User(Model):
     @classmethod
     def authenticate(cls, username, password):
         user = cls.select().where(User.username == username).first()
-
+ps aux | grep mysql
         if user and user.password == User.create_password(password):
             return user
 
