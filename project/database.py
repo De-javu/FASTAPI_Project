@@ -36,7 +36,7 @@ class User(Model):
     @classmethod
     def authenticate(cls, username, password):
         user = cls.select().where(User.username == username).first()
-ps aux | grep mysql
+#ps aux | grep mysql
         if user and user.password == User.create_password(password):
             return user
 
